@@ -104,6 +104,12 @@
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>line_login</tabstop>
+  <tabstop>line_password</tabstop>
+  <tabstop>btn_enter</tabstop>
+  <tabstop>btn_close</tabstop>
+ </tabstops>
  <resources>
   <include location="../res.qrc"/>
  </resources>
