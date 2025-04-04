@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/images">
         <file>images/gerb.png</file>
+        <file>images/add.png</file>
+        <file>images/delete.png</file>
+        <file>images/edit.png</file>
     </qresource>
 </RCC>
