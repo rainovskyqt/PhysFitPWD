@@ -1,10 +1,13 @@
 #include "formlogin.h"
 #include "ui_formlogin.h"
 
+#include <QKeyEvent>
 #include <QMessageBox>
 
-#include "mainwindow.h"
-#include "user/user.h"
+#include <QDebug>
+
+#include "globalvals.h"
+#include "mainmenu.h"
 
 FormLogin::FormLogin(QWidget *parent) :
     QMainWindow(parent),
@@ -23,10 +26,11 @@ void FormLogin::on_btn_close_clicked()
     this->close();
 }
 
-User* FormLogin::checkLogin(QString login, QString password)
+bool FormLogin::checkLogin(QString login, QString password)
 {
-    auto u = new User();
-    return u;
+    User *u = new User("login");
+    GlobalVals::get()->setUser(u);
+    return true;
 }
 
 void FormLogin::keyPressEvent(QKeyEvent *event) {
@@ -39,11 +43,11 @@ void FormLogin::keyPressEvent(QKeyEvent *event) {
 
 void FormLogin::on_btn_enter_clicked()
 {
-    auto user = checkLogin(ui->line_login->text().simplified().toLower(),
+    bool ok = checkLogin(ui->line_login->text().simplified().toLower(),
                            ui->line_password->text());
 
-    if(user != nullptr){
-        MainWindow *w = new MainWindow(user);
+    if(ok){
+        MainMenu *w = new MainMenu();
         w->show();
         this->close();
     } else {

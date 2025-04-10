@@ -28,7 +28,7 @@ private slots:
 private:
     Ui::FormLogin *ui;
 
-    User* checkLogin(QString login, QString password);
+    bool checkLogin(QString login, QString password);
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;
