@@ -23,8 +23,6 @@ list(APPEND PRJ_SRCS ${PRJ_SRCS0})
 
 add_executable(PhysFitPWD
     ${PROJECT_SOURCES}
-
-    src/dictionary/dictionaryform.h src/dictionary/dictionaryform.cpp src/dictionary/dictionaryform.ui
     )
 
 list(APPEND PRJ_RESOURCES

@@ -24,12 +24,21 @@ bool TableCreator::createTables(QSqlDatabase *db)
     createDictionary("doctor_clearance", db, tables);
     createDictionary("diagnosis", db, tables);
 
+    db->close();
+
     return true;
 }
 
 bool TableCreator::addDefaultData(QSqlDatabase *db)
 {
+    if(!db->isOpen()){
+        if(!db->open())
+            return false;
+    }
+
     addDefaultDictionary(db);
+
+    db->close();
 
     return true;
 }

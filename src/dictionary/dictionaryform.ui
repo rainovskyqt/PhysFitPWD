@@ -58,6 +58,13 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="btn_clearance">
+        <property name="text">
+         <string>Допуск</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="btn_diagnosis">
         <property name="text">
          <string>Диагнозы</string>

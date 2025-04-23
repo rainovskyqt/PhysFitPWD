@@ -1,12 +1,12 @@
 #include <QApplication>
-#include <database/database.h>
+#include <database/baseworker.h>
 #include "login/formlogin.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    DataBase::make("config.db");
+    BaseWorker::get()->init("config.db");
 
     FormLogin l;
     l.show();
