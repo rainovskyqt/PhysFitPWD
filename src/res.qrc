@@ -4,5 +4,8 @@
         <file>images/add.png</file>
         <file>images/delete.png</file>
         <file>images/edit.png</file>
+        <file>images/arrow_down.png</file>
+        <file>images/arrow_up.png</file>
+        <file>images/printer.png</file>
     </qresource>
 </RCC>

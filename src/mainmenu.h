@@ -18,6 +18,8 @@ public:
 private slots:
     void on_btn_examineeBase_clicked();
 
+    void on_btn_dictionaries_clicked();
+
 private:
     Ui::MainMenu *ui;
 };
