@@ -20,7 +20,6 @@ public:
 signals:
     void succesLogin(User*);
 
-
 private slots:
     void on_btn_close_clicked();
     void on_btn_enter_clicked();

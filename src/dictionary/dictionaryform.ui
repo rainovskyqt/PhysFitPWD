@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>432</width>
-    <height>496</height>
+    <height>456</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -88,14 +88,14 @@
     </widget>
    </item>
    <item>
-    <widget class="QListWidget" name="listWidget"/>
+    <widget class="QListWidget" name="lw_valuesList"/>
    </item>
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <widget class="QToolButton" name="btn_add">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="text">
         <string>...</string>
@@ -109,7 +109,7 @@
      <item>
       <widget class="QToolButton" name="btn_edit">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="text">
         <string>...</string>
@@ -123,7 +123,7 @@
      <item>
       <widget class="QToolButton" name="btn_delete">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="text">
         <string>...</string>
@@ -150,7 +150,7 @@
      <item>
       <widget class="QToolButton" name="btn_up">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="text">
         <string>...</string>
@@ -164,7 +164,7 @@
      <item>
       <widget class="QToolButton" name="btn_down">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="text">
         <string>...</string>

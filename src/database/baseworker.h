@@ -17,6 +17,9 @@ public:
     static BaseWorker *get();
 
     Dictionary *getDictionary(Dictionary::Type type);
+    void addDictory(Dictionary::Type type, QString name);
+    void editDictory(Dictionary::Type type, int id, QString name, int orderPlace);
+    void deleteDictory(Dictionary::Type type, int id);
 
 signals:
 
@@ -32,6 +35,9 @@ private:
 
     QSqlQuery *executeQuery(const QString& queryText,
                             const QMap<QString, QVariant>& params = {});
+
+    QString getDictonaryTable(Dictionary::Type type);
+    void updateOrderPlace(Dictionary::Type type, int id);
 };
 
 #endif // BASEWORKER_H

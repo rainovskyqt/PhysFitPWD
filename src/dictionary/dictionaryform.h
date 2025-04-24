@@ -2,6 +2,7 @@
 #define DICTIONARYFORM_H
 
 #include <QDialog>
+#include <QListWidgetItem>
 #include "dictionary/dictionary.h"
 
 namespace Ui {
@@ -24,13 +25,22 @@ private slots:
     void on_btn_groups_clicked();
     void on_btn_subGroups_clicked();
     void on_btn_diagnosis_clicked();
-
     void on_btn_clearance_clicked();
+    void on_btn_up_clicked();
+    void on_btn_down_clicked();
+    void on_btn_add_clicked();
+    void on_btn_edit_clicked();
+    void on_btn_delete_clicked();
+    void on_lw_valuesList_itemDoubleClicked(QListWidgetItem *item);
 
 private:
     Ui::DictionaryForm *ui;
 
+    T m_currentDictory;
+
     void setDictionary(T type);
+    bool exists(QString name);
+
 };
 
 #endif // DICTIONARYFORM_H
