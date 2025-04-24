@@ -4,12 +4,12 @@ Dictionary::Dictionary(QObject *parent)
     : QObject{parent}
 {}
 
-const QMap<int, QString> Dictionary::values() const
+const QVector<QPair<int, QString>> Dictionary::values() const
 {
     return m_dict;
 }
 
 void Dictionary::addVal(int id, QString name)
 {
-    m_dict.insert(id, name);
+    m_dict.append(qMakePair(id, name));
 }

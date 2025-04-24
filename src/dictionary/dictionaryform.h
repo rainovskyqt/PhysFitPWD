@@ -40,7 +40,7 @@ private:
 
     void setDictionary(T type);
     bool exists(QString name);
-
+    void swapOrder(int row1, int row2, int current);
 };
 
 #endif // DICTIONARYFORM_H

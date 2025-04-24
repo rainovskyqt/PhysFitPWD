@@ -1,7 +1,7 @@
 #ifndef DICTIONARY_H
 #define DICTIONARY_H
 
-#include <QMap>
+#include <QVector>
 #include <QObject>
 
 class Dictionary : public QObject
@@ -20,13 +20,13 @@ public:
 
     explicit Dictionary(QObject *parent = nullptr);
 
-    const QMap<int, QString> values() const;
+    const QVector<QPair<int, QString>> values() const;
     void addVal(int id, QString name);
 
 signals:
 
 private:
-    QMap<int, QString> m_dict;
+    QVector<QPair<int, QString>> m_dict;
 };
 
 #endif // DICTIONARY_H

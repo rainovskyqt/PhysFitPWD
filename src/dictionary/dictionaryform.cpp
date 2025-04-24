@@ -1,10 +1,11 @@
 #include "dictionaryform.h"
 #include "ui_dictionaryform.h"
 
-#include "database/baseworker.h"
+#include "dictionarymanager.h"
 
 #include <QInputDialog>
 #include <QMessageBox>
+#include <QDebug>
 
 DictionaryForm::DictionaryForm(QWidget *parent)
     : QDialog(parent)
@@ -22,12 +23,12 @@ DictionaryForm::~DictionaryForm()
 void DictionaryForm::setDictionary(T type)
 {
     ui->lw_valuesList->clear();
-    auto dicts = BaseWorker::get()->getDictionary(type);
+    auto dicts = DictionaryManager::getDictionary(type);
     auto vals = dicts->values();
 
-    for(auto it = vals.begin(); it != vals.end(); ++it){
-        auto item = new QListWidgetItem(it.value(), ui->lw_valuesList);
-        item->setData(Qt::UserRole, it.key());
+    for(auto v : vals){
+        auto item = new QListWidgetItem(v.second);
+        item->setData(Qt::UserRole, v.first);
         ui->lw_valuesList->addItem(item);
     }
 
@@ -43,6 +44,17 @@ bool DictionaryForm::exists(QString name)
             return true;
 
     return false;
+}
+
+void DictionaryForm::swapOrder(int row1, int row2, int current)
+{
+    int firstId = ui->lw_valuesList->item(row1)->data(Qt::UserRole).toInt();
+    int secondId = ui->lw_valuesList->item(row2)->data(Qt::UserRole).toInt();
+
+    DictionaryManager::swapPlace(m_currentDictory, firstId, secondId);
+    setDictionary(m_currentDictory);
+
+    ui->lw_valuesList->setCurrentRow(current);
 }
 
 void DictionaryForm::on_btn_rang_clicked()
@@ -77,12 +89,18 @@ void DictionaryForm::on_btn_clearance_clicked()
 
 void DictionaryForm::on_btn_up_clicked()
 {
-
+    int row = ui->lw_valuesList->currentRow();
+    if(row ==0)
+        return;
+    swapOrder(row -1, row, row -1);
 }
 
 void DictionaryForm::on_btn_down_clicked()
 {
-
+    int row = ui->lw_valuesList->currentRow();
+    if(row == ui->lw_valuesList->count())
+        return;
+    swapOrder(row, row + 1, row + 1);
 }
 
 void DictionaryForm::on_btn_add_clicked()
@@ -96,7 +114,7 @@ void DictionaryForm::on_btn_add_clicked()
         return;
     }
 
-    BaseWorker::get()->addDictory(m_currentDictory, name);
+    DictionaryManager::addDictory(m_currentDictory, name);
     setDictionary(m_currentDictory);
 }
 
@@ -113,7 +131,7 @@ void DictionaryForm::on_btn_edit_clicked()
     if(name.isEmpty())
         return;
 
-    BaseWorker::get()->editDictory(m_currentDictory, id, name, orderPlace);
+    DictionaryManager::editDictory(m_currentDictory, id, name, orderPlace);
     setDictionary(m_currentDictory);
 }
 
@@ -129,7 +147,7 @@ void DictionaryForm::on_btn_delete_clicked()
 
     int id = item->data(Qt::UserRole).toInt();
 
-    BaseWorker::get()->deleteDictory(m_currentDictory, id);
+    DictionaryManager::deleteDictory(m_currentDictory, id);
     setDictionary(m_currentDictory);
 }
 
