@@ -23,7 +23,8 @@ DictionaryForm::~DictionaryForm()
 void DictionaryForm::setDictionary(T type)
 {
     ui->lw_valuesList->clear();
-    auto dicts = DictionaryManager::getDictionary(type);
+    auto mng = new DictionaryManager(this);
+    auto dicts = mng->getDictionary(type);
     auto vals = dicts->values();
 
     for(auto v : vals){
@@ -35,6 +36,7 @@ void DictionaryForm::setDictionary(T type)
     m_currentDictory = type;
 
     delete dicts;
+    delete mng;
 }
 
 bool DictionaryForm::exists(QString name)
@@ -51,10 +53,13 @@ void DictionaryForm::swapOrder(int row1, int row2, int current)
     int firstId = ui->lw_valuesList->item(row1)->data(Qt::UserRole).toInt();
     int secondId = ui->lw_valuesList->item(row2)->data(Qt::UserRole).toInt();
 
-    DictionaryManager::swapPlace(m_currentDictory, firstId, secondId);
+    auto mng = new DictionaryManager(this);
+    mng->swapPlace(m_currentDictory, firstId, secondId);
     setDictionary(m_currentDictory);
 
     ui->lw_valuesList->setCurrentRow(current);
+
+    delete mng;
 }
 
 void DictionaryForm::on_btn_rang_clicked()
@@ -114,8 +119,11 @@ void DictionaryForm::on_btn_add_clicked()
         return;
     }
 
-    DictionaryManager::addDictory(m_currentDictory, name);
+    auto mng = new DictionaryManager(this);
+    mng->addDictory(m_currentDictory, name);
     setDictionary(m_currentDictory);
+
+    delete mng;
 }
 
 void DictionaryForm::on_btn_edit_clicked()
@@ -131,8 +139,10 @@ void DictionaryForm::on_btn_edit_clicked()
     if(name.isEmpty())
         return;
 
-    DictionaryManager::editDictory(m_currentDictory, id, name, orderPlace);
+    auto mng = new DictionaryManager(this);
+    mng->editDictory(m_currentDictory, id, name, orderPlace);
     setDictionary(m_currentDictory);
+    delete mng;
 }
 
 void DictionaryForm::on_btn_delete_clicked()
@@ -147,8 +157,11 @@ void DictionaryForm::on_btn_delete_clicked()
 
     int id = item->data(Qt::UserRole).toInt();
 
-    DictionaryManager::deleteDictory(m_currentDictory, id);
+    auto mng = new DictionaryManager(this);
+    mng->deleteDictory(m_currentDictory, id);
     setDictionary(m_currentDictory);
+
+    delete mng;
 }
 
 void DictionaryForm::on_lw_valuesList_itemDoubleClicked(QListWidgetItem *item)

@@ -11,18 +11,18 @@ class DictionaryManager : public QObject
 public:
     explicit DictionaryManager(QObject *parent = nullptr);
 
-    static Dictionary *getDictionary(Dictionary::Type type);
-    static void addDictory(Dictionary::Type type, QString name);
-    static void editDictory(Dictionary::Type type, int id, QString name, int orderPlace);
-    static void deleteDictory(Dictionary::Type type, int id);
-    static void swapPlace(Dictionary::Type type, int idFirst, int idSecond);
+    Dictionary *getDictionary(Dictionary::Type type);
+    void addDictory(Dictionary::Type type, QString name);
+    void editDictory(Dictionary::Type type, int id, QString name, int orderPlace);
+    void deleteDictory(Dictionary::Type type, int id);
+    void swapPlace(Dictionary::Type type, int idFirst, int idSecond);
 
 signals:
 
 private:
-    static QString getDictonaryTable(Dictionary::Type type);
-    static void updateOrderPlace(Dictionary::Type type, int id);
-    static int getOrderPlace(Dictionary::Type type, int id);
+    QString getDictonaryTable(Dictionary::Type type);
+    void updateOrderPlace(Dictionary::Type type, int id);
+    int getOrderPlace(Dictionary::Type type, int id);
 };
 
 #endif // DICTIONARYMANAGER_H

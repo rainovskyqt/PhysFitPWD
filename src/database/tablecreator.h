@@ -31,6 +31,8 @@ private:
     QStringList subGroups();
     QStringList clearance();
     QStringList diagnosis();
+
+    void createDepartments(QSqlDatabase *db, const QStringList &tables);
 };
 
 #endif // TABLECREATOR_H

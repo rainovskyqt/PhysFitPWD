@@ -18,8 +18,14 @@ public:
 private slots:
     void on_btn_close_clicked();
 
+    void on_btn_expand_clicked();
+
+    void on_btn_collapse_clicked();
+
 private:
     Ui::ExamineeList *ui;
+
+    void loadDepatments();
 };
 
 #endif // EXAMINEELIST_H

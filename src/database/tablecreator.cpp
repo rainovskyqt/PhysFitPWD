@@ -24,6 +24,8 @@ bool TableCreator::createTables(QSqlDatabase *db)
     createDictionary("doctor_clearance", db, tables);
     createDictionary("diagnosis", db, tables);
 
+    createDepartments(db, tables);
+
     db->close();
 
     return true;
@@ -49,7 +51,7 @@ bool TableCreator::createTable(const QString &name, const QStringList &params,
         return false;
 
     QSqlQuery query(*db);
-    QString queryString = QString("CREATE TABLE %1 ( %2 )").arg(name, params.join(", "));
+    QString queryString = QString("CREATE TABLE IF NOT EXISTS %1 ( %2 )").arg(name, params.join(", "));
     query.exec(queryString);
 
     if(query.lastError().isValid()){
@@ -99,12 +101,12 @@ QString TableCreator::dictionaryParams(const QStringList data)
 QStringList TableCreator::rangs()
 {
     QStringList r = {"рядовой", "ефрейтор",
-                         "младший сержант", "сержант", "старший сержант", "старшина",
-                         "прапорщик", "старший прапорщик",
-                         "младший лейтенант", "лейтенант", "старший лейтенант", "капитан",
-                         "майор", "подполковник", "полковник",
-                         "генерал-майор", "генерал-лейтенант", "генерал-полковник", "генерал армии",
-                         "Маршал РФ"};
+                     "младший сержант", "сержант", "старший сержант", "старшина",
+                     "прапорщик", "старший прапорщик",
+                     "младший лейтенант", "лейтенант", "старший лейтенант", "капитан",
+                     "майор", "подполковник", "полковник",
+                     "генерал-майор", "генерал-лейтенант", "генерал-полковник", "генерал армии",
+                     "Маршал РФ"};
 
     return r;
 }
@@ -138,7 +140,20 @@ QStringList TableCreator::clearance()
 }
 
 QStringList TableCreator::diagnosis()
-{    QStringList d = {"Диагноз"};
+{
+    QStringList d = {"Диагноз"};
 
     return d;
+}
+
+void TableCreator::createDepartments(QSqlDatabase *db, const QStringList &tables)
+{
+    QString name = "departments";
+    QStringList params = {
+        "id INTEGER PRIMARY KEY AUTOINCREMENT",
+        "name VARCHAR(255)",
+        "parent INTEGER"
+    };
+
+    createTable(name, params, db, tables);
 }
