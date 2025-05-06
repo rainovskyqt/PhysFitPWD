@@ -12,7 +12,7 @@ DictionaryForm::DictionaryForm(QWidget *parent)
     , ui(new Ui::DictionaryForm)
 {
     ui->setupUi(this);
-    on_btn_rang_clicked();
+    on_btn_department_clicked();
 }
 
 DictionaryForm::~DictionaryForm()
@@ -25,9 +25,9 @@ void DictionaryForm::setDictionary(T type)
     ui->lw_valuesList->clear();
     auto mng = new DictionaryManager(this);
     auto dicts = mng->getDictionary(type);
-    auto vals = dicts->values();
+    auto const vals = dicts->values();
 
-    for(auto v : vals){
+    for(auto const &v : vals){
         auto item = new QListWidgetItem(v.second);
         item->setData(Qt::UserRole, v.first);
         ui->lw_valuesList->addItem(item);
@@ -60,6 +60,11 @@ void DictionaryForm::swapOrder(int row1, int row2, int current)
     ui->lw_valuesList->setCurrentRow(current);
 
     delete mng;
+}
+
+void DictionaryForm::on_btn_department_clicked()
+{
+    setDictionary(T::Departments);
 }
 
 void DictionaryForm::on_btn_rang_clicked()
@@ -169,4 +174,3 @@ void DictionaryForm::on_lw_valuesList_itemDoubleClicked(QListWidgetItem *item)
     Q_UNUSED(item)
     on_btn_edit_clicked();
 }
-

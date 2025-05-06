@@ -108,6 +108,8 @@ QString DictionaryManager::getDictonaryTable(Dictionary::Type type)
         return "doctor_clearance";
     case Dictionary::Type::Diagnosis:
         return "diagnosis";
+    case Dictionary::Type::Departments:
+        return "departments";
     }
 
     return "";

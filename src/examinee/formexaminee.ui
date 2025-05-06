@@ -24,13 +24,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox_6">
-       <item>
-        <property name="text">
-         <string>1</string>
-        </property>
-       </item>
-      </widget>
+      <widget class="QComboBox" name="cb_ageGroup"/>
      </item>
      <item>
       <widget class="QLabel" name="label_11">
@@ -40,13 +34,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox_7">
-       <item>
-        <property name="text">
-         <string>Контрольная</string>
-        </property>
-       </item>
-      </widget>
+      <widget class="QComboBox" name="cb_group"/>
      </item>
      <item>
       <widget class="QLabel" name="label_12">
@@ -56,13 +44,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox_8">
-       <item>
-        <property name="text">
-         <string>Верхние конечности</string>
-        </property>
-       </item>
-      </widget>
+      <widget class="QComboBox" name="cb_subGroup"/>
      </item>
      <item>
       <spacer name="horizontalSpacer">
@@ -89,13 +71,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox_5">
-       <item>
-        <property name="text">
-         <string>Рядовой</string>
-        </property>
-       </item>
-      </widget>
+      <widget class="QComboBox" name="cb_rang"/>
      </item>
      <item>
       <widget class="QLabel" name="label">
@@ -105,13 +81,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox">
-       <item>
-        <property name="text">
-         <string>Какое-нибудь подразделение</string>
-        </property>
-       </item>
-      </widget>
+      <widget class="QComboBox" name="cb_department"/>
      </item>
      <item>
       <spacer name="horizontalSpacer_2">
@@ -140,7 +110,7 @@
      <item>
       <widget class="QLineEdit" name="lineEdit">
        <property name="text">
-        <string>Фамилия</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -154,7 +124,7 @@
      <item>
       <widget class="QLineEdit" name="lineEdit_2">
        <property name="text">
-        <string>Имя</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -168,7 +138,7 @@
      <item>
       <widget class="QLineEdit" name="lineEdit_3">
        <property name="text">
-        <string>Отчество</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -182,7 +152,7 @@
      <item>
       <widget class="QLineEdit" name="lineEdit_4">
        <property name="text">
-        <string>15.06.1990</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -198,13 +168,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox_2">
-       <item>
-        <property name="text">
-         <string>Допущен</string>
-        </property>
-       </item>
-      </widget>
+      <widget class="QComboBox" name="cb_clearance"/>
      </item>
      <item>
       <widget class="QLabel" name="label_7">
@@ -214,13 +178,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox_3">
-       <item>
-        <property name="text">
-         <string>Ампутация правой кисти</string>
-        </property>
-       </item>
-      </widget>
+      <widget class="QComboBox" name="cb_diagnos"/>
      </item>
     </layout>
    </item>
@@ -236,8 +194,7 @@
      <item>
       <widget class="QPlainTextEdit" name="plainTextEdit">
        <property name="plainText">
-        <string>Нет
-</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -257,7 +214,7 @@
        <item>
         <widget class="QPlainTextEdit" name="plainTextEdit_2">
          <property name="plainText">
-          <string>Хорошой человек</string>
+          <string/>
          </property>
         </widget>
        </item>
@@ -282,11 +239,6 @@
            <attribute name="horizontalHeaderStretchLastSection">
             <bool>true</bool>
            </attribute>
-           <row>
-            <property name="text">
-             <string>Новая строка</string>
-            </property>
-           </row>
            <column>
             <property name="text">
              <string>Дата</string>
@@ -307,26 +259,6 @@
              <string>Пороговый балл</string>
             </property>
            </column>
-           <item row="0" column="0">
-            <property name="text">
-             <string>04.04.2025</string>
-            </property>
-           </item>
-           <item row="0" column="1">
-            <property name="text">
-             <string>5</string>
-            </property>
-           </item>
-           <item row="0" column="2">
-            <property name="text">
-             <string>60</string>
-            </property>
-           </item>
-           <item row="0" column="3">
-            <property name="text">
-             <string>55</string>
-            </property>
-           </item>
           </widget>
          </item>
          <item>

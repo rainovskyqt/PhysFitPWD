@@ -9,6 +9,9 @@ ExamineeList::ExamineeList(QWidget *parent)
 {
     ui->setupUi(this);
 
+
+    connect(ui->btn_save, &QToolButton::clicked, ui->w_examinee, &FormExaminee::save);
+    connect(ui->btn_reset, &QToolButton::clicked, ui->w_examinee, &FormExaminee::reset);
     loadDepatments();
 }
 
@@ -22,12 +25,10 @@ void ExamineeList::on_btn_close_clicked()
     reject();
 }
 
-
 void ExamineeList::on_btn_expand_clicked()
 {
     ui->treeWidget->expandAll();
 }
-
 
 void ExamineeList::on_btn_collapse_clicked()
 {

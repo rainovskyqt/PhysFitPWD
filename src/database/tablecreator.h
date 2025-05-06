@@ -32,7 +32,7 @@ private:
     QStringList clearance();
     QStringList diagnosis();
 
-    void createDepartments(QSqlDatabase *db, const QStringList &tables);
+//    void createDepartments(QSqlDatabase *db, const QStringList &tables);
 };
 
 #endif // TABLECREATOR_H

@@ -30,6 +30,13 @@
        <number>0</number>
       </property>
       <item>
+       <widget class="QPushButton" name="btn_department">
+        <property name="text">
+         <string>Подразделения</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="btn_rang">
         <property name="text">
          <string>Звания</string>

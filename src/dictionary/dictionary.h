@@ -15,7 +15,8 @@ public:
         Groups,
         SubGroups,
         Clearance,
-        Diagnosis
+        Diagnosis,
+        Departments
     };
 
     explicit Dictionary(QObject *parent = nullptr);

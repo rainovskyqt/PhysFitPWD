@@ -20,6 +20,7 @@ public:
     ~DictionaryForm();
 
 private slots:
+    void on_btn_department_clicked();
     void on_btn_rang_clicked();
     void on_btn_ageGroups_clicked();
     void on_btn_groups_clicked();
@@ -32,6 +33,7 @@ private slots:
     void on_btn_edit_clicked();
     void on_btn_delete_clicked();
     void on_lw_valuesList_itemDoubleClicked(QListWidgetItem *item);
+
 
 private:
     Ui::DictionaryForm *ui;
