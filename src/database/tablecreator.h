@@ -33,6 +33,7 @@ private:
     QStringList diagnosis();
 
 //    void createDepartments(QSqlDatabase *db, const QStringList &tables);
+    void createExaminee(QSqlDatabase *db, const QStringList &tables);
 };
 
 #endif // TABLECREATOR_H

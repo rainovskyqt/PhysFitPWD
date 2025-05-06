@@ -2,6 +2,9 @@
 #define EXAMINEEMANAGER_H
 
 #include <QObject>
+#include <QVector>
+
+class Department;
 
 class ExamineeManager : public QObject
 {
@@ -9,7 +12,7 @@ class ExamineeManager : public QObject
 public:
     explicit ExamineeManager(QObject *parent = nullptr);
 
-    QStringList getDepartments();
+    QVector<Department*> getDepartments();
 
 private:
 };

@@ -25,7 +25,8 @@ bool TableCreator::createTables(QSqlDatabase *db)
     createDictionary("diagnosis", db, tables);
     createDictionary("departments", db, tables);
 
-//    createDepartments(db, tables);
+    //    createDepartments(db, tables);
+    createExaminee(db, tables);
 
     db->close();
 
@@ -145,6 +146,29 @@ QStringList TableCreator::diagnosis()
     QStringList d = {"Диагноз"};
 
     return d;
+}
+
+void TableCreator::createExaminee(QSqlDatabase *db, const QStringList &tables)
+{
+    QString name = "examinees";
+    QStringList params = {
+        "id INTEGER PRIMARY KEY AUTOINCREMENT",
+        "ageGroup INTEGER",
+        "test_group INTEGER",
+        "subGroup INTEGER",
+        "rang INTEGER",
+        "department INTEGER",
+        "surname VARCHAR(255)",
+        "name VARCHAR(255)",
+        "midlle_name VARCHAR(255)",
+        "born DATE",
+        "clearance INTEGER",
+        "diagnos INTEGER",
+        "diseases TEXT",
+        "comments TEXT"
+    };
+
+    createTable(name, params, db, tables);
 }
 
 //void TableCreator::createDepartments(QSqlDatabase *db, const QStringList &tables)

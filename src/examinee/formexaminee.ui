@@ -192,7 +192,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPlainTextEdit" name="plainTextEdit">
+      <widget class="QPlainTextEdit" name="text_diseases">
        <property name="plainText">
         <string/>
        </property>
@@ -212,7 +212,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QPlainTextEdit" name="plainTextEdit_2">
+        <widget class="QPlainTextEdit" name="text_comments">
          <property name="plainText">
           <string/>
          </property>
