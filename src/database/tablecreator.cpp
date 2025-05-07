@@ -153,14 +153,14 @@ void TableCreator::createExaminee(QSqlDatabase *db, const QStringList &tables)
     QString name = "examinees";
     QStringList params = {
         "id INTEGER PRIMARY KEY AUTOINCREMENT",
-        "ageGroup INTEGER",
+        "age_group INTEGER",
         "test_group INTEGER",
-        "subGroup INTEGER",
+        "subgroup INTEGER",
         "rang INTEGER",
         "department INTEGER",
         "surname VARCHAR(255)",
         "name VARCHAR(255)",
-        "midlle_name VARCHAR(255)",
+        "middle_name VARCHAR(255)",
         "born DATE",
         "clearance INTEGER",
         "diagnos INTEGER",

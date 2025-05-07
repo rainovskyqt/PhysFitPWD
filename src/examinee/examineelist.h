@@ -2,6 +2,7 @@
 #define EXAMINEELIST_H
 
 #include <QDialog>
+#include <QTreeWidgetItem>
 
 namespace Ui {
 class ExamineeList;
@@ -21,6 +22,7 @@ private slots:
     void on_btn_collapse_clicked();
 
     void on_btn_add_clicked();
+    void on_tree_departments_itemClicked(QTreeWidgetItem *item, int column);
 
 private:
 
@@ -32,6 +34,7 @@ private:
     Ui::ExamineeList *ui;
 
     void loadDepatments();
+    void addExaminee();
 };
 
 #endif // EXAMINEELIST_H

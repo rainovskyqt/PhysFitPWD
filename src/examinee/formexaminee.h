@@ -7,7 +7,7 @@
 #include "dictionary/dictionary.h"
 
 using DType = Dictionary::Type;
-
+class Examinee;
 
 namespace Ui {
 class FormExaminee;
@@ -38,6 +38,9 @@ private:
 
     void loadDictionaries();
     void loadDictionary(DType type, QComboBox *box);
+    void setFrom(Examinee *e);
+    void setBoxValue(int val, QComboBox *box);
+    bool checkDate(QLineEdit *bl);
 };
 
 #endif // FORMEXAMINEE_H
