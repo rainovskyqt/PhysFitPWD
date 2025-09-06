@@ -15,7 +15,7 @@ ExamineeList::ExamineeList(QWidget *parent)
 
     ui->stackedWidget->setCurrentIndex((int)Pages::Empty);
 
-    connect(ui->btn_save, &QToolButton::clicked, ui->page_examinee, &FormExaminee::save);
+    connect(ui->btn_save, &QToolButton::clicked, this, &ExamineeList::saveExaminee);
     connect(ui->btn_reset, &QToolButton::clicked, ui->page_examinee, &FormExaminee::reset);
 
     loadDepatments();
@@ -43,12 +43,10 @@ void ExamineeList::on_btn_collapse_clicked()
 
 void ExamineeList::loadDepatments()
 {
-//    ui->treeWidget->clear();
     ui->tree_departments->clear();
 
     auto mng = new ExamineeManager(this);
     auto examinees = mng->examineeList();
-
 
     auto departments = examinees.uniqueKeys();
     std::sort(departments.begin(), departments.end());
@@ -61,6 +59,8 @@ void ExamineeList::loadDepatments()
         QSet<QPair<QString, int>> staffUnique = QSet<QPair<QString, int>>::fromList(exam);
 
         for(const auto &value : qAsConst(staffUnique)) {
+            if(!value.second)
+                continue;
             QTreeWidgetItem* childItem = new QTreeWidgetItem(parentItem);
             childItem->setData(0, Qt::UserRole, qAsConst(value.second));
             childItem->setText(0, value.first);
@@ -74,6 +74,26 @@ void ExamineeList::addExaminee()
 {
     ui->stackedWidget->setCurrentIndex((int)Pages::Examinee);
     ui->page_examinee->loadForm(0);
+    ui->page_examinee->setDepartment(ui->tree_departments->currentItem()->text(0));
+}
+
+void ExamineeList::selectExaminee(QString dep, int id)
+{
+    for(int i = 0; i < ui->tree_departments->topLevelItemCount(); ++i){
+        auto item = ui->tree_departments->topLevelItem(i);
+        if(item->text(0) != dep){
+            continue;
+        }
+
+        for(int j = 0; j < item->childCount(); ++j){
+            auto child = item->child(j);
+            if(child->data(0, Qt::UserRole).toInt() == id){
+                child->setSelected(true);
+                item->setExpanded(true);
+                break;
+            }
+        }
+    }
 }
 
 void ExamineeList::on_btn_add_clicked()
@@ -81,6 +101,14 @@ void ExamineeList::on_btn_add_clicked()
     addExaminee();
 }
 
+void ExamineeList::saveExaminee()
+{
+    QPair<QString, int> id = ui->page_examinee->save();
+    if(id.second){
+        loadDepatments();
+        selectExaminee(id.first, id.second);
+    }
+}
 
 void ExamineeList::on_tree_departments_itemClicked(QTreeWidgetItem *item, int column)
 {
@@ -88,6 +116,8 @@ void ExamineeList::on_tree_departments_itemClicked(QTreeWidgetItem *item, int co
     if(id){
         ui->stackedWidget->setCurrentIndex((int)Pages::Examinee);
         ui->page_examinee->loadForm(id);
+    } else {
+        ui->stackedWidget->setCurrentIndex((int)Pages::Empty);
     }
 }
 

@@ -22,6 +22,7 @@ private slots:
     void on_btn_collapse_clicked();
 
     void on_btn_add_clicked();
+    void saveExaminee();
     void on_tree_departments_itemClicked(QTreeWidgetItem *item, int column);
 
 private:
@@ -35,6 +36,7 @@ private:
 
     void loadDepatments();
     void addExaminee();
+    void selectExaminee(QString dep, int id);
 };
 
 #endif // EXAMINEELIST_H

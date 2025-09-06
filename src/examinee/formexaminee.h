@@ -6,6 +6,8 @@
 
 #include "dictionary/dictionary.h"
 
+#include "examinee.h"
+
 using DType = Dictionary::Type;
 class Examinee;
 
@@ -22,14 +24,15 @@ public:
     ~FormExaminee();
 
 public slots:
-    void save();
+    QPair<QString, int> save();
     void reset();
     void loadForm(int baseId);
+    void setDepartment(QString dep);
 
 private:
     Ui::FormExaminee *ui;
 
-    int m_baseId;
+    Examinee *m_examinee;
 
     void resetForm();
     void clearFields();

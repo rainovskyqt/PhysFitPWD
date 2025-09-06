@@ -9,6 +9,7 @@
 FormExaminee::FormExaminee(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::FormExaminee)
+    , m_examinee(nullptr)
 {
     ui->setupUi(this);
 
@@ -21,37 +22,39 @@ FormExaminee::~FormExaminee()
     delete ui;
 }
 
-void FormExaminee::save()
+QPair<QString,int> FormExaminee::save()
 {
     if(!checkDate(ui->line_born))
-        return;
+        return qMakePair(QString(), 0);
 
     auto mng = new ExamineeManager(this);
-    auto e = new Examinee();
+    if(m_examinee == nullptr)
+        m_examinee = new Examinee();
 
-    e->setId(m_baseId);
-    e->setAgeGroup(ui->cb_ageGroup->currentData().toInt());
-    e->setTestGroup(ui->cb_group->currentData().toInt());
-    e->setSubGroup(ui->cb_subGroup->currentData().toInt());
-    e->setRang(ui->cb_rang->currentData().toInt());
-    e->setDepartment(ui->cb_department->currentData().toInt());
-    e->setSurname(ui->line_surname->text());
-    e->setName(ui->line_name->text());
-    e->setMiddleName(ui->line_middleName->text());
-    e->setBorn(QDate::fromString(ui->line_born->text(), "dd.MM.yyyy"));
-    e->setClearance(ui->cb_clearance->currentData().toInt());
-    e->setDiagnos(ui->cb_diagnos->currentData().toInt());
-    e->setDiseases(ui->text_diseases->toPlainText());
-    e->setComments(ui->text_comments->toPlainText());
+    m_examinee->setAgeGroup(ui->cb_ageGroup->currentData().toInt());
+    m_examinee->setTestGroup(ui->cb_group->currentData().toInt());
+    m_examinee->setSubGroup(ui->cb_subGroup->currentData().toInt());
+    m_examinee->setRang(ui->cb_rang->currentData().toInt());
+    m_examinee->setDepartment(ui->cb_department->currentData().toInt());
+    m_examinee->setSurname(ui->line_surname->text());
+    m_examinee->setName(ui->line_name->text());
+    m_examinee->setMiddleName(ui->line_middleName->text());
+    m_examinee->setBorn(QDate::fromString(ui->line_born->text(), "dd.MM.yyyy"));
+    m_examinee->setClearance(ui->cb_clearance->currentData().toInt());
+    m_examinee->setDiagnos(ui->cb_diagnos->currentData().toInt());
+    m_examinee->setDiseases(ui->text_diseases->toPlainText());
+    m_examinee->setComments(ui->text_comments->toPlainText());
 
-    mng->saveExaminee(e);
-    setFrom(e);
+    mng->saveExaminee(m_examinee);
+    return qMakePair(ui->cb_department->currentText(), m_examinee->id());
 }
 
 void FormExaminee::reset()
 {
-    if(m_baseId){
-        loadForm(m_baseId);
+    if(m_examinee){
+        int id = m_examinee->id();
+        m_examinee->deleteLater();
+        loadForm(id);
     } else {
         resetForm();
     }
@@ -59,17 +62,21 @@ void FormExaminee::reset()
 
 void FormExaminee::loadForm(int baseId)
 {
-    m_baseId = baseId;
-
     auto mng = new ExamineeManager(this);
-    auto e = mng->getExaminee(baseId);
+    m_examinee = mng->getExaminee(baseId);
+    setFrom(m_examinee);
+}
 
-    setFrom(e);
+void FormExaminee::setDepartment(QString dep)
+{
+    ui->cb_department->setCurrentText(dep);
 }
 
 void FormExaminee::resetForm()
 {
-    m_baseId = 0;
+    if(m_examinee)
+        delete m_examinee;
+
     clearFields();
 }
 
@@ -135,8 +142,6 @@ void FormExaminee::setFrom(Examinee *e)
 
     ui->text_diseases->setPlainText(e->diseases());
     ui->text_comments->setPlainText(e->comments());
-
-    e->deleteLater();
 }
 
 void FormExaminee::setBoxValue(int val, QComboBox *box)
