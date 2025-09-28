@@ -20,6 +20,8 @@ private slots:
 
     void on_btn_dictionaries_clicked();
 
+    void on_btn_testsEditor_clicked();
+
 private:
     Ui::MainMenu *ui;
 };

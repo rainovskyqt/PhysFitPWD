@@ -14,10 +14,12 @@ public:
         AgeGroups,
         Groups,
         SubGroups,
-        Clearance,
         Diagnosis,
-        Departments
+        Departments,
+        Subdivision,
+        Exesise
     };
+
 
     explicit Dictionary(QObject *parent = nullptr);
 

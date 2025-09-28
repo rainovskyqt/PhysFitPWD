@@ -8,11 +8,12 @@ Examinee::Examinee(QObject *parent) : QObject(parent)
     m_subGroup = 0;
     m_rang = 0;
     m_department = 0;
+    m_subdivision = 0;
     m_surname = "";
     m_name = "";
     m_middleName = "";
     m_born = QDate();
-    m_clearance = 0;
+    m_weight = 0;
     m_diagnos = 0;
     m_diseases = "";
     m_comments = "";
@@ -118,16 +119,6 @@ void Examinee::setBorn(const QDate &newBorn)
     m_born = newBorn;
 }
 
-int Examinee::clearance() const
-{
-    return m_clearance;
-}
-
-void Examinee::setClearance(int newClearance)
-{
-    m_clearance = newClearance;
-}
-
 int Examinee::diagnos() const
 {
     return m_diagnos;
@@ -156,4 +147,24 @@ const QString &Examinee::comments() const
 void Examinee::setComments(const QString &newComments)
 {
     m_comments = newComments;
+}
+
+int Examinee::weight() const
+{
+    return m_weight;
+}
+
+void Examinee::setWeight(int newWeight)
+{
+    m_weight = newWeight;
+}
+
+int Examinee::subdivision() const
+{
+    return m_subdivision;
+}
+
+void Examinee::setSubdivision(int newSubdivision)
+{
+    m_subdivision = newSubdivision;
 }

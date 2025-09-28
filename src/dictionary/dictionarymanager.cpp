@@ -6,6 +6,14 @@
 DictionaryManager::DictionaryManager(QObject *parent)
     : QObject{parent}
 {
+    m_humanName.insert(Type::Departments,"Войсковая чать");
+    m_humanName.insert(Type::Rangs,"Звание");
+    m_humanName.insert(Type::AgeGroups,"Возрастная группа");
+    m_humanName.insert(Type::Groups,"Группа");
+    m_humanName.insert(Type::SubGroups,"Подгруппа");
+    m_humanName.insert(Type::Diagnosis,"Диагноз");
+    m_humanName.insert(Type::Subdivision,"Подразделение");
+    m_humanName.insert(Type::Exesise,"Упражнение");
 }
 
 Dictionary *DictionaryManager::getDictionary(Dictionary::Type type)
@@ -93,6 +101,11 @@ void DictionaryManager::swapPlace(Dictionary::Type type, int idFirst, int idSeco
     BaseWorker::get()->updateOrDelete(queryString, params);
 }
 
+QString DictionaryManager::humanName(Type type)
+{
+    return m_humanName.value(type, "");
+}
+
 QString DictionaryManager::getDictonaryTable(Dictionary::Type type)
 {
     switch (type) {
@@ -104,12 +117,14 @@ QString DictionaryManager::getDictonaryTable(Dictionary::Type type)
         return "groups";
     case Dictionary::Type::SubGroups:
         return "sub_groups";
-    case Dictionary::Type::Clearance:
-        return "doctor_clearance";
     case Dictionary::Type::Diagnosis:
         return "diagnosis";
     case Dictionary::Type::Departments:
         return "departments";
+    case Dictionary::Type::Subdivision:
+        return "subdivision";
+    case Dictionary::Type::Exesise:
+        return "exesise";
     }
 
     return "";

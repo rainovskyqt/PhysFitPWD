@@ -39,6 +39,12 @@ public:
     const QString &comments() const;
     void setComments(const QString &newComments);
 
+    int weight() const;
+    void setWeight(int newWeight);
+
+    int subdivision() const;
+    void setSubdivision(int newSubdivision);
+
 signals:
 
 private:
@@ -48,11 +54,12 @@ private:
     int m_subGroup;
     int m_rang;
     int m_department;
+    int m_subdivision;
     QString m_surname;
     QString m_name;
     QString m_middleName;
     QDate m_born;
-    int m_clearance;
+    int m_weight;
     int m_diagnos;
     QString m_diseases;
     QString m_comments;

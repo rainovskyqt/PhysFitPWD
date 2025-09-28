@@ -29,7 +29,6 @@ private:
     QStringList ageGroups();
     QStringList groups();
     QStringList subGroups();
-    QStringList clearance();
     QStringList diagnosis();
 
     void createDepartments(QSqlDatabase *db, const QStringList &tables);

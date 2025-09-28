@@ -10,27 +10,9 @@ ExamineeManager::ExamineeManager(QObject *parent) : QObject(parent)
 {
 }
 
-QVector<Department*> ExamineeManager::getDepartments()
-{
-    QString queryString = QString("SELECT id, name "
-                                  "FROM departments "
-                                  "ORDER BY name");
-
-    auto *q = BaseWorker::get()->select(queryString);
-    QVector<Department*> deps;
-
-    while (q->next()) {
-        deps.append(new Department(q->value("id").toInt(), q->value("name").toString()));
-    }
-
-    delete q;
-
-    return deps;
-}
-
 Examinee *ExamineeManager::getExaminee(int id)
 {
-    QString queryString = "SELECT id, age_group,test_group, subgroup, rang, department, "
+    QString queryString = "SELECT id, age_group,test_group, subgroup, rang, department, subdivision, weight, "
                           "surname, name, middle_name, born, "
                           "clearance, diagnos, diseases, comments "
                           "FROM examinees "
@@ -49,11 +31,12 @@ Examinee *ExamineeManager::getExaminee(int id)
         e->setSubGroup(q->value("subgroup").toInt());
         e->setRang(q->value("rang").toInt());
         e->setDepartment(q->value("department").toInt());
+        e->setSubdivision(q->value("subdivision").toInt());
         e->setSurname(q->value("surname").toString());
         e->setName(q->value("name").toString());
         e->setMiddleName(q->value("middle_name").toString());
         e->setBorn(q->value("born").toDate());
-        e->setClearance(q->value("clearance").toInt());
+        e->setWeight(q->value("weight").toInt());
         e->setDiagnos(q->value("diagnos").toInt());
         e->setDiseases(q->value("diseases").toString());
         e->setComments(q->value("comments").toString());
@@ -63,14 +46,14 @@ Examinee *ExamineeManager::getExaminee(int id)
 
 void ExamineeManager::saveExaminee(Examinee *e)
 {
-    QString insert = QString("INSERT INTO examinees (age_group, test_group, subgroup, rang, department, "
-                             "surname, name, middle_name, born, clearance, diagnos, diseases, comments) "
-                             "VALUES (:age_group, :test_group, :subgroup, :rang, :department, "
-                             ":surname, :name, :middle_name, :born, :clearance, :diagnos, :diseases, :comments)");
+    QString insert = QString("INSERT INTO examinees (age_group, test_group, subgroup, rang, department, subdivision, "
+                             "surname, name, middle_name, born, weight, diagnos, diseases, comments) "
+                             "VALUES (:age_group, :test_group, :subgroup, :rang, :department, :subdivision, "
+                             ":surname, :name, :middle_name, :born, :weight, :diagnos, :diseases, :comments)");
     QString update = QString("UPDATE examinees SET age_group = :age_group, test_group = :test_group, subgroup = :subgroup, "
-                             "rang = :rang, department = :department, surname = :surname, name = :name, "
-                             "middle_name = :middle_name, born = :born, clearance = :clearance, diagnos = :diagnos, "
-                             "diseases = :diseases, comments = :comments"
+                             "rang = :rang, department = :department, subdivision =: subdivision, surname = :surname, "
+                             "name = :name, middle_name = :middle_name, born = :born, weight = :weight, "
+                             "diagnos = :diagnos, diseases = :diseases, comments = :comments"
                              );
 
     QMap<QString, QVariant>params;
@@ -80,11 +63,12 @@ void ExamineeManager::saveExaminee(Examinee *e)
     params.insert(":subgroup", QVariant(e->subGroup()));
     params.insert(":rang", QVariant(e->rang()));
     params.insert(":department", QVariant(e->department()));
+    params.insert(":subdivision", QVariant(e->subdivision()));
     params.insert(":surname", QVariant(e->surname()));
     params.insert(":name", QVariant(e->name()));
     params.insert(":middle_name", QVariant(e->middleName()));
     params.insert(":born", QVariant(e->born()));
-    params.insert(":clearance", QVariant(e->clearance()));
+    params.insert(":weight", QVariant(e->weight()));
     params.insert(":diagnos", QVariant(e->diagnos()));
     params.insert(":diseases", QVariant(e->diseases()));
     params.insert(":comments", QVariant(e->comments()));

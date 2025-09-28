@@ -2,7 +2,8 @@
 
 Dictionary::Dictionary(QObject *parent)
     : QObject{parent}
-{}
+{
+}
 
 const QVector<QPair<int, QString>> Dictionary::values() const
 {

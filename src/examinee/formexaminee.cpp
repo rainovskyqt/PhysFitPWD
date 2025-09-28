@@ -40,7 +40,6 @@ QPair<QString,int> FormExaminee::save()
     m_examinee->setName(ui->line_name->text());
     m_examinee->setMiddleName(ui->line_middleName->text());
     m_examinee->setBorn(QDate::fromString(ui->line_born->text(), "dd.MM.yyyy"));
-    m_examinee->setClearance(ui->cb_clearance->currentData().toInt());
     m_examinee->setDiagnos(ui->cb_diagnos->currentData().toInt());
     m_examinee->setDiseases(ui->text_diseases->toPlainText());
     m_examinee->setComments(ui->text_comments->toPlainText());
@@ -110,8 +109,8 @@ void FormExaminee::loadDictionaries()
     loadDictionary(DType::SubGroups, ui->cb_subGroup);
     loadDictionary(DType::Rangs, ui->cb_rang);
     loadDictionary(DType::Departments, ui->cb_department);
-    loadDictionary(DType::Clearance, ui->cb_clearance);
     loadDictionary(DType::Diagnosis, ui->cb_diagnos);
+    loadDictionary(DType::Subdivision, ui->cb_subdivision);
 }
 
 void FormExaminee::loadDictionary(DType type, QComboBox *box)
@@ -132,13 +131,14 @@ void FormExaminee::setFrom(Examinee *e)
     setBoxValue(e->subGroup(), ui->cb_subGroup);
     setBoxValue(e->rang(), ui->cb_rang);
     setBoxValue(e->department(), ui->cb_department);
-    setBoxValue(e->clearance(), ui->cb_clearance);
+    setBoxValue(e->subdivision(), ui->cb_subdivision);
     setBoxValue(e->diagnos(), ui->cb_diagnos);
 
     ui->line_surname->setText(e->surname());
     ui->line_name->setText(e->name());
     ui->line_middleName->setText(e->middleName());
     ui->line_born->setText(e->born().toString("dd.MM.yyyy"));
+    ui->dsb_weght->setValue(e->weight());
 
     ui->text_diseases->setPlainText(e->diseases());
     ui->text_comments->setPlainText(e->comments());

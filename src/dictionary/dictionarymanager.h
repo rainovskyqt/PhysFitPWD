@@ -3,7 +3,10 @@
 
 #include "dictionary.h"
 
+#include <QMap>
 #include <QObject>
+
+using Type = Dictionary::Type;
 
 class DictionaryManager : public QObject
 {
@@ -17,12 +20,16 @@ public:
     void deleteDictory(Dictionary::Type type, int id);
     void swapPlace(Dictionary::Type type, int idFirst, int idSecond);
 
+    QString humanName(Type type);
+
 signals:
 
 private:
     QString getDictonaryTable(Dictionary::Type type);
     void updateOrderPlace(Dictionary::Type type, int id);
     int getOrderPlace(Dictionary::Type type, int id);
+
+    QMap<Type, QString> m_humanName;
 };
 
 #endif // DICTIONARYMANAGER_H

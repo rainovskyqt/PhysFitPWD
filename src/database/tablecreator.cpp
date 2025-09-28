@@ -21,11 +21,11 @@ bool TableCreator::createTables(QSqlDatabase *db)
     createDictionary("age_groups", db, tables);
     createDictionary("groups", db, tables);
     createDictionary("sub_groups", db, tables);
-    createDictionary("doctor_clearance", db, tables);
     createDictionary("diagnosis", db, tables);
     createDictionary("departments", db, tables);
+    createDictionary("subdivision", db, tables);
+    createDictionary("exesise", db, tables);
 
-    createDepartments(db, tables);
     createExaminee(db, tables);
 
     db->close();
@@ -81,7 +81,6 @@ void TableCreator::addDefaultDictionary(QSqlDatabase *db)
     queryStrings.append(QString("INSERT INTO age_groups(name, orderPlace) VALUES %2").arg(dictionaryParams(ageGroups())));
     queryStrings.append(QString("INSERT INTO groups(name, orderPlace) VALUES %2").arg(dictionaryParams(groups())));
     queryStrings.append(QString("INSERT INTO sub_groups(name, orderPlace) VALUES %2").arg(dictionaryParams(subGroups())));
-    queryStrings.append(QString("INSERT INTO doctor_clearance(name, orderPlace) VALUES %2").arg(dictionaryParams(clearance())));
     queryStrings.append(QString("INSERT INTO diagnosis(name, orderPlace) VALUES %2").arg(dictionaryParams(diagnosis())));
 
     QSqlQuery query(*db);
@@ -134,13 +133,6 @@ QStringList TableCreator::subGroups()
     return sg;
 }
 
-QStringList TableCreator::clearance()
-{
-    QStringList c = {"Допущен"};
-
-    return c;
-}
-
 QStringList TableCreator::diagnosis()
 {
     QStringList d = {"Диагноз"};
@@ -158,26 +150,16 @@ void TableCreator::createExaminee(QSqlDatabase *db, const QStringList &tables)
         "subgroup INTEGER",
         "rang INTEGER",
         "department INTEGER",
+        "subdivision INTEGER",
         "surname VARCHAR(255)",
         "name VARCHAR(255)",
         "middle_name VARCHAR(255)",
         "born DATE",
+        "weight INTEGER",
         "clearance INTEGER",
         "diagnos INTEGER",
         "diseases TEXT",
         "comments TEXT"
-    };
-
-    createTable(name, params, db, tables);
-}
-
-void TableCreator::createDepartments(QSqlDatabase *db, const QStringList &tables)
-{
-    QString name = "departments";
-    QStringList params = {
-        "id INTEGER PRIMARY KEY AUTOINCREMENT",
-        "name VARCHAR(255)",
-        "parent INTEGER"
     };
 
     createTable(name, params, db, tables);

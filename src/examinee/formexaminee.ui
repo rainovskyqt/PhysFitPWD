@@ -15,53 +15,6 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0,0,0,1,2">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QLabel" name="label_10">
-       <property name="text">
-        <string>Возрастная группа</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="cb_ageGroup"/>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_11">
-       <property name="text">
-        <string>Группа</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="cb_group"/>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_12">
-       <property name="text">
-        <string>Подгруппа</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="cb_subGroup"/>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
-   </item>
-   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
       <widget class="QLabel" name="label_3">
@@ -76,12 +29,22 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Подразделение:</string>
+        <string>Войсковая часть:</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QComboBox" name="cb_department"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_15">
+       <property name="text">
+        <string>Подразделение:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cb_subdivision"/>
      </item>
      <item>
       <spacer name="horizontalSpacer_2">
@@ -103,7 +66,7 @@
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>Фамилия</string>
+        <string>Фамилия:</string>
        </property>
       </widget>
      </item>
@@ -117,7 +80,7 @@
      <item>
       <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>Имя</string>
+        <string>Имя:</string>
        </property>
       </widget>
      </item>
@@ -131,7 +94,7 @@
      <item>
       <widget class="QLabel" name="label_5">
        <property name="text">
-        <string>Отчество</string>
+        <string>Отчество:</string>
        </property>
       </widget>
      </item>
@@ -145,35 +108,85 @@
      <item>
       <widget class="QLabel" name="label_8">
        <property name="text">
-        <string>Дата рождения</string>
+        <string>Дата рождения:</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="line_born">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
+      <widget class="QLineEdit" name="line_born"/>
      </item>
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0,0,1">
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QLabel" name="label_6">
+      <widget class="QLabel" name="label_10">
        <property name="text">
-        <string>Допуск врача</string>
+        <string>Возрастная группа:</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="cb_clearance"/>
+      <widget class="QComboBox" name="cb_ageGroup"/>
      </item>
+     <item>
+      <widget class="QLabel" name="label_11">
+       <property name="text">
+        <string>Группа:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cb_group"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_12">
+       <property name="text">
+        <string>Подгруппа:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cb_subGroup"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>Вес:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="dsb_weght">
+       <property name="minimum">
+        <number>80</number>
+       </property>
+       <property name="maximum">
+        <number>200</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,1">
      <item>
       <widget class="QLabel" name="label_7">
        <property name="text">
-        <string>Диагноз</string>
+        <string>Диагноз:</string>
        </property>
       </widget>
      </item>
@@ -187,7 +200,7 @@
      <item>
       <widget class="QLabel" name="label_9">
        <property name="text">
-        <string>Сопутствующие заболевания</string>
+        <string>Сопутствующие заболевания:</string>
        </property>
       </widget>
      </item>
@@ -207,7 +220,7 @@
        <item>
         <widget class="QLabel" name="label_13">
          <property name="text">
-          <string>Примечание</string>
+          <string>Примечание:</string>
          </property>
         </widget>
        </item>
@@ -225,7 +238,7 @@
        <item>
         <widget class="QLabel" name="label_14">
          <property name="text">
-          <string>Результаты тестирования</string>
+          <string>Результаты тестирования:</string>
          </property>
         </widget>
        </item>
