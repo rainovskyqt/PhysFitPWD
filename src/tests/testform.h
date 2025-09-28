@@ -15,6 +15,9 @@ public:
     explicit TestForm(QWidget *parent = nullptr, int testId = 0);
     ~TestForm();
 
+private slots:
+    void on_btn_add_clicked();
+
 private:
     Ui::TestForm *ui;
 };
