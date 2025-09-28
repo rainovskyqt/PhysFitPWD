@@ -25,8 +25,12 @@ bool TableCreator::createTables(QSqlDatabase *db)
     createDictionary("departments", db, tables);
     createDictionary("subdivision", db, tables);
     createDictionary("exesise", db, tables);
+    createDictionary("exesise_direction", db, tables);
+    createDictionary("exesise_units", db, tables);
 
     createExaminee(db, tables);
+    createTest(db, tables);
+    createTestExesise(db, tables);
 
     db->close();
 
@@ -77,11 +81,18 @@ bool TableCreator::createDictionary(const QString &name, QSqlDatabase *db, const
 void TableCreator::addDefaultDictionary(QSqlDatabase *db)
 {
     QStringList queryStrings;
-    queryStrings.append(QString("INSERT INTO rangs(name, orderPlace) VALUES %2").arg(dictionaryParams(rangs())));
-    queryStrings.append(QString("INSERT INTO age_groups(name, orderPlace) VALUES %2").arg(dictionaryParams(ageGroups())));
-    queryStrings.append(QString("INSERT INTO groups(name, orderPlace) VALUES %2").arg(dictionaryParams(groups())));
-    queryStrings.append(QString("INSERT INTO sub_groups(name, orderPlace) VALUES %2").arg(dictionaryParams(subGroups())));
-    queryStrings.append(QString("INSERT INTO diagnosis(name, orderPlace) VALUES %2").arg(dictionaryParams(diagnosis())));
+    queryStrings.append(QString("INSERT INTO rangs(name, orderPlace) VALUES %2")
+                        .arg(dictionaryParams(rangs())));
+    queryStrings.append(QString("INSERT INTO age_groups(name, orderPlace) VALUES %2")
+                        .arg(dictionaryParams(ageGroups())));
+    queryStrings.append(QString("INSERT INTO groups(name, orderPlace) VALUES %2")
+                        .arg(dictionaryParams(groups())));
+    queryStrings.append(QString("INSERT INTO sub_groups(name, orderPlace) VALUES %2")
+                        .arg(dictionaryParams(subGroups())));
+    queryStrings.append(QString("INSERT INTO exesise_direction(name, orderPlace) VALUES %2")
+                        .arg(dictionaryParams(exesiseDirection())));
+     queryStrings.append(QString("INSERT INTO exesise_units(name, orderPlace) VALUES %2")
+                         .arg(dictionaryParams(exesiseUnits())));
 
     QSqlQuery query(*db);
     for(const auto &q : qAsConst(queryStrings))
@@ -140,6 +151,18 @@ QStringList TableCreator::diagnosis()
     return d;
 }
 
+QStringList TableCreator::exesiseDirection()
+{
+    QStringList d = {"Возрастание", "Убывание"};
+    return d;
+}
+
+QStringList TableCreator::exesiseUnits()
+{
+    QStringList d = {"Секунды", "Минуты,Секунды", "Повторы", "Сантиметры", "Метры"};
+    return d;
+}
+
 void TableCreator::createExaminee(QSqlDatabase *db, const QStringList &tables)
 {
     QString name = "examinees";
@@ -160,6 +183,37 @@ void TableCreator::createExaminee(QSqlDatabase *db, const QStringList &tables)
         "diagnos INTEGER",
         "diseases TEXT",
         "comments TEXT"
+    };
+
+    createTable(name, params, db, tables);
+}
+
+void TableCreator::createTest(QSqlDatabase *db, const QStringList &tables)
+{
+    QString name = "tests";
+    QStringList params = {
+        "id INTEGER PRIMARY KEY AUTOINCREMENT",
+        "name TEXT",
+        "age_group INTEGER",
+        "subgroup INTEGER"
+    };
+
+    createTable(name, params, db, tables);
+}
+
+void TableCreator::createTestExesise(QSqlDatabase *db, const QStringList &tables)
+{
+    QString name = "test_exesises";
+    QStringList params = {
+        "id INTEGER PRIMARY KEY AUTOINCREMENT",
+        "test INTEGER",
+        "exesise INTEGER",
+        "direct INTEGER",
+        "five INTEGER",
+        "four INTEGER",
+        "three INTEGER",
+        "two INTEGER",
+        "one INTEGER"
     };
 
     createTable(name, params, db, tables);
