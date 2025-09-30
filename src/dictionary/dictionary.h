@@ -26,6 +26,7 @@ public:
 
     const QVector<QPair<int, QString>> values() const;
     void addVal(int id, QString name);
+    QString value(int id);
 
 signals:
 

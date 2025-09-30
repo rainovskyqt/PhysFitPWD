@@ -1,6 +1,7 @@
 #ifndef EXERCISELIST_H
 #define EXERCISELIST_H
 
+#include <QListWidgetItem>
 #include <QWidget>
 
 class Exercise;
@@ -22,6 +23,8 @@ private slots:
     void on_btn_edit_clicked();
 
     void on_btn_delete_clicked();
+
+    void on_lw_exerciseList_itemDoubleClicked(QListWidgetItem *item);
 
 private:
     Ui::ExerciseList *ui;

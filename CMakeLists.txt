@@ -23,6 +23,7 @@ list(APPEND PRJ_SRCS ${PRJ_SRCS0})
 
 add_executable(PhysFitPWD
     ${PROJECT_SOURCES}
+    src/tests/testexesiseform.h src/tests/testexesiseform.cpp src/tests/testexesiseform.ui
     )
 
 list(APPEND PRJ_RESOURCES

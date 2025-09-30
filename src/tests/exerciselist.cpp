@@ -86,3 +86,10 @@ void ExerciseList::on_btn_delete_clicked()
     loadExercises();
 }
 
+
+void ExerciseList::on_lw_exerciseList_itemDoubleClicked(QListWidgetItem *item)
+{
+    Q_UNUSED(item)
+    on_btn_edit_clicked();
+}
+

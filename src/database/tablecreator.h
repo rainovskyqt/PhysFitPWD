@@ -37,6 +37,7 @@ private:
     void createTest(QSqlDatabase *db, const QStringList &tables);
     void createExercise(QSqlDatabase *db, const QStringList &tables);
     void createTestExercise(QSqlDatabase *db, const QStringList &tables);
+    void createExerciseGrade(QSqlDatabase *db, const QStringList &tables);
 };
 
 #endif // TABLECREATOR_H

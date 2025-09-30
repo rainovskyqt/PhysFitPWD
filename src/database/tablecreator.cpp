@@ -31,6 +31,7 @@ bool TableCreator::createTables(QSqlDatabase *db)
     createTest(db, tables);
     createExercise(db, tables);
     createTestExercise(db, tables);
+    // createExerciseGrade(db, tables);
 
     db->close();
 
@@ -221,12 +222,20 @@ void TableCreator::createTestExercise(QSqlDatabase *db, const QStringList &table
         "id INTEGER PRIMARY KEY AUTOINCREMENT",
         "test INTEGER",
         "exercise INTEGER",
-        "direct INTEGER",
-        "five INTEGER",
-        "four INTEGER",
-        "three INTEGER",
-        "two INTEGER",
-        "one INTEGER"
+        "grades INTEGER"
+    };
+
+    createTable(name, params, db, tables);
+}
+
+void TableCreator::createExerciseGrade(QSqlDatabase *db, const QStringList &tables)
+{
+    QString name = "exercises_grade";
+    QStringList params = {
+        "id INTEGER PRIMARY KEY AUTOINCREMENT",
+        "exercise INTEGER",
+        "grade INTEGER",
+        "points INTEGER"
     };
 
     createTable(name, params, db, tables);
