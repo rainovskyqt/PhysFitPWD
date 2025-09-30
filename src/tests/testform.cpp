@@ -134,3 +134,10 @@ void TestForm::on_btn_edit_clicked()
     ef->deleteLater();
 }
 
+
+void TestForm::on_lw_exercises_itemDoubleClicked(QListWidgetItem *item)
+{
+    Q_UNUSED(item)
+    on_btn_edit_clicked();
+}
+

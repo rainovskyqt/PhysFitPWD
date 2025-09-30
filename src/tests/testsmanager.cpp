@@ -94,8 +94,8 @@ Test *TestsManager::test(int id)
     QString queryString = QString("SELECT T.id, T.name, T.age_group, T.subgroup, "
                                   "GROUP_CONCAT(TE.id || '|' || TE.exercise || '|' || E.name || '|' || TE.grades, '||') AS grades "
                                   "FROM tests T "
-                                  "INNER JOIN test_exercises TE ON TE.test = T.id "
-                                  "INNER JOIN exercise E ON TE.exercise = E.id "
+                                  "LEFT JOIN test_exercises TE ON TE.test = T.id "
+                                  "LEFT JOIN exercise E ON TE.exercise = E.id "
                                   "WHERE T.id = :id");
 
     QMap<QString, QVariant>params;
@@ -166,6 +166,7 @@ void TestsManager::editTestExercise(Test *t)
 {
     auto exercise = t->exercises();
     for(auto te : qAsConst(exercise)){
+        te->setTestId(t->id());
         saveTestExercise(te);
     }
     deleteTestExercise(t->deleted());
@@ -206,6 +207,8 @@ void TestsManager::deleteTestExercise(QList<int> deleted)
 
 void TestsManager::parceTestExercise(QString grade, Test *t)
 {
+    if(grade.isEmpty())
+        return;
     QStringList execises = grade.split("||");
     for(int i = 0; i < execises.count(); ++i){
         QStringList grades = execises.at(i).split("|");

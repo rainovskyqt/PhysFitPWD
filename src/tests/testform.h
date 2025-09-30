@@ -2,6 +2,7 @@
 #define TESTFORM_H
 
 #include <QDialog>
+#include <QListWidgetItem>
 
 namespace Ui {
 class TestForm;
@@ -22,6 +23,8 @@ private slots:
     void on_btn_add_clicked();
     void on_btn_delete_clicked();
     void on_btn_edit_clicked();
+
+    void on_lw_exercises_itemDoubleClicked(QListWidgetItem *item);
 
 private:
     Ui::TestForm *ui;
