@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>TestsList</class>
- <widget class="QWidget" name="TestsList">
+ <class>ExerciseList</class>
+ <widget class="QWidget" name="ExerciseList">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>635</width>
-    <height>571</height>
+    <width>705</width>
+    <height>669</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QListWidget" name="lw_valuesList"/>
+    <widget class="QListWidget" name="lw_exerciseList"/>
    </item>
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">

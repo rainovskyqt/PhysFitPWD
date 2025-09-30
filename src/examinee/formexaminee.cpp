@@ -5,6 +5,7 @@
 #include <dictionary/dictionarymanager.h>
 #include "examinee.h"
 #include <QMessageBox>
+#include <misc.h>
 
 FormExaminee::FormExaminee(QWidget *parent)
     : QWidget(parent)
@@ -104,35 +105,25 @@ void FormExaminee::clearLines()
 
 void FormExaminee::loadDictionaries()
 {
-    loadDictionary(DType::AgeGroups, ui->cb_ageGroup);
-    loadDictionary(DType::Groups, ui->cb_group);
-    loadDictionary(DType::SubGroups, ui->cb_subGroup);
-    loadDictionary(DType::Rangs, ui->cb_rang);
-    loadDictionary(DType::Departments, ui->cb_department);
-    loadDictionary(DType::Diagnosis, ui->cb_diagnos);
-    loadDictionary(DType::Subdivision, ui->cb_subdivision);
-}
-
-void FormExaminee::loadDictionary(DType type, QComboBox *box)
-{
-    auto mng = new DictionaryManager(this);
-    auto dict = mng->getDictionary(type);
-    auto const vals = dict->values();
-
-    for(auto const &v : vals){
-        box->addItem(v.second, v.first);
-    }
+    auto dm = new DictionaryManager(this);
+    dm->loadDictionary(DType::AgeGroups, ui->cb_ageGroup);
+    dm->loadDictionary(DType::Groups, ui->cb_group);
+    dm->loadDictionary(DType::SubGroups, ui->cb_subGroup);
+    dm->loadDictionary(DType::Rangs, ui->cb_rang);
+    dm->loadDictionary(DType::Departments, ui->cb_department);
+    dm->loadDictionary(DType::Diagnosis, ui->cb_diagnos);
+    dm->loadDictionary(DType::Subdivision, ui->cb_subdivision);
 }
 
 void FormExaminee::setFrom(Examinee *e)
 {
-    setBoxValue(e->ageGroup(), ui->cb_ageGroup);
-    setBoxValue(e->testGroup(), ui->cb_group);
-    setBoxValue(e->subGroup(), ui->cb_subGroup);
-    setBoxValue(e->rang(), ui->cb_rang);
-    setBoxValue(e->department(), ui->cb_department);
-    setBoxValue(e->subdivision(), ui->cb_subdivision);
-    setBoxValue(e->diagnos(), ui->cb_diagnos);
+    Misc::setBoxValue(e->ageGroup(), ui->cb_ageGroup);
+    Misc::setBoxValue(e->testGroup(), ui->cb_group);
+    Misc::setBoxValue(e->subGroup(), ui->cb_subGroup);
+    Misc::setBoxValue(e->rang(), ui->cb_rang);
+    Misc::setBoxValue(e->department(), ui->cb_department);
+    Misc::setBoxValue(e->subdivision(), ui->cb_subdivision);
+    Misc::setBoxValue(e->diagnos(), ui->cb_diagnos);
 
     ui->line_surname->setText(e->surname());
     ui->line_name->setText(e->name());
@@ -142,12 +133,6 @@ void FormExaminee::setFrom(Examinee *e)
 
     ui->text_diseases->setPlainText(e->diseases());
     ui->text_comments->setPlainText(e->comments());
-}
-
-void FormExaminee::setBoxValue(int val, QComboBox *box)
-{
-    int index = box->findData(val, Qt::UserRole);
-    box->setCurrentIndex(index == -1 ? 0 : index);
 }
 
 bool FormExaminee::checkDate(QLineEdit *bl)

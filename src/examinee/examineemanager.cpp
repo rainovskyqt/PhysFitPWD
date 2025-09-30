@@ -53,7 +53,8 @@ void ExamineeManager::saveExaminee(Examinee *e)
     QString update = QString("UPDATE examinees SET age_group = :age_group, test_group = :test_group, subgroup = :subgroup, "
                              "rang = :rang, department = :department, subdivision =: subdivision, surname = :surname, "
                              "name = :name, middle_name = :middle_name, born = :born, weight = :weight, "
-                             "diagnos = :diagnos, diseases = :diseases, comments = :comments"
+                             "diagnos = :diagnos, diseases = :diseases, comments = :comments "
+                             "WHERE id = :id"
                              );
 
     QMap<QString, QVariant>params;
@@ -79,6 +80,18 @@ void ExamineeManager::saveExaminee(Examinee *e)
         int id = BaseWorker::get()->insert(insert, params);
         e->setId(id);
     }
+}
+
+void ExamineeManager::deleteExaminee(int id)
+{
+    QString del = QString("DELETE FROM  examinees "
+                             "WHERE id = :id"
+                             );
+
+    QMap<QString, QVariant>params;
+    params.insert(":id", QVariant(id));
+
+    BaseWorker::get()->updateOrDelete(del, params);
 }
 
 QMultiHash<QString, QPair<QString, int> > ExamineeManager::examineeList(int dep)

@@ -17,7 +17,8 @@ public:
         Diagnosis,
         Departments,
         Subdivision,
-        Exesise
+        ExerciseUnits,
+        ExerciseDirection
     };
 
 

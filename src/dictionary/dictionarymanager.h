@@ -3,10 +3,11 @@
 
 #include "dictionary.h"
 
+#include <QComboBox>
 #include <QMap>
 #include <QObject>
 
-using Type = Dictionary::Type;
+using DType = Dictionary::Type;
 
 class DictionaryManager : public QObject
 {
@@ -14,22 +15,23 @@ class DictionaryManager : public QObject
 public:
     explicit DictionaryManager(QObject *parent = nullptr);
 
-    Dictionary *getDictionary(Dictionary::Type type);
-    void addDictory(Dictionary::Type type, QString name);
-    void editDictory(Dictionary::Type type, int id, QString name, int orderPlace);
-    void deleteDictory(Dictionary::Type type, int id);
-    void swapPlace(Dictionary::Type type, int idFirst, int idSecond);
+    Dictionary *getDictionary(DType type);
+    void addDictory(DType type, QString name);
+    void editDictory(DType type, int id, QString name, int orderPlace);
+    void deleteDictory(DType type, int id);
+    void swapPlace(DType type, int idFirst, int idSecond);
+    QString humanName(DType type);
+    void loadDictionary(DType type, QComboBox *box);
 
-    QString humanName(Type type);
 
 signals:
 
 private:
-    QString getDictonaryTable(Dictionary::Type type);
-    void updateOrderPlace(Dictionary::Type type, int id);
-    int getOrderPlace(Dictionary::Type type, int id);
+    QString getDictonaryTable(DType type);
+    void updateOrderPlace(DType type, int id);
+    int getOrderPlace(DType type, int id);
 
-    QMap<Type, QString> m_humanName;
+    QMap<DType, QString> m_humanName;
 };
 
 #endif // DICTIONARYMANAGER_H

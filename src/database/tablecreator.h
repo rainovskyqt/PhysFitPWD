@@ -30,12 +30,13 @@ private:
     QStringList groups();
     QStringList subGroups();
     QStringList diagnosis();
-    QStringList exesiseDirection();
-    QStringList exesiseUnits();
+    QStringList exerciseDirection();
+    QStringList exerciseUnits();
 
     void createExaminee(QSqlDatabase *db, const QStringList &tables);
     void createTest(QSqlDatabase *db, const QStringList &tables);
-    void createTestExesise(QSqlDatabase *db, const QStringList &tables);
+    void createExercise(QSqlDatabase *db, const QStringList &tables);
+    void createTestExercise(QSqlDatabase *db, const QStringList &tables);
 };
 
 #endif // TABLECREATOR_H

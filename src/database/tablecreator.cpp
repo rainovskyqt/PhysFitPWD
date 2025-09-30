@@ -24,13 +24,13 @@ bool TableCreator::createTables(QSqlDatabase *db)
     createDictionary("diagnosis", db, tables);
     createDictionary("departments", db, tables);
     createDictionary("subdivision", db, tables);
-    createDictionary("exesise", db, tables);
-    createDictionary("exesise_direction", db, tables);
-    createDictionary("exesise_units", db, tables);
+    createDictionary("exercise_direction", db, tables);
+    createDictionary("exercise_units", db, tables);
 
     createExaminee(db, tables);
     createTest(db, tables);
-    createTestExesise(db, tables);
+    createExercise(db, tables);
+    createTestExercise(db, tables);
 
     db->close();
 
@@ -89,10 +89,10 @@ void TableCreator::addDefaultDictionary(QSqlDatabase *db)
                         .arg(dictionaryParams(groups())));
     queryStrings.append(QString("INSERT INTO sub_groups(name, orderPlace) VALUES %2")
                         .arg(dictionaryParams(subGroups())));
-    queryStrings.append(QString("INSERT INTO exesise_direction(name, orderPlace) VALUES %2")
-                        .arg(dictionaryParams(exesiseDirection())));
-     queryStrings.append(QString("INSERT INTO exesise_units(name, orderPlace) VALUES %2")
-                         .arg(dictionaryParams(exesiseUnits())));
+    queryStrings.append(QString("INSERT INTO exercise_direction(name, orderPlace) VALUES %2")
+                        .arg(dictionaryParams(exerciseDirection())));
+     queryStrings.append(QString("INSERT INTO exercise_units(name, orderPlace) VALUES %2")
+                         .arg(dictionaryParams(exerciseUnits())));
 
     QSqlQuery query(*db);
     for(const auto &q : qAsConst(queryStrings))
@@ -151,13 +151,13 @@ QStringList TableCreator::diagnosis()
     return d;
 }
 
-QStringList TableCreator::exesiseDirection()
+QStringList TableCreator::exerciseDirection()
 {
-    QStringList d = {"Возрастание", "Убывание"};
+    QStringList d = {"Больше лучше", "Меньше лучше"};
     return d;
 }
 
-QStringList TableCreator::exesiseUnits()
+QStringList TableCreator::exerciseUnits()
 {
     QStringList d = {"Секунды", "Минуты,Секунды", "Повторы", "Сантиметры", "Метры"};
     return d;
@@ -201,13 +201,26 @@ void TableCreator::createTest(QSqlDatabase *db, const QStringList &tables)
     createTable(name, params, db, tables);
 }
 
-void TableCreator::createTestExesise(QSqlDatabase *db, const QStringList &tables)
+void TableCreator::createExercise(QSqlDatabase *db, const QStringList &tables)
 {
-    QString name = "test_exesises";
+    QString name = "exercise";
+    QStringList params = {
+        "id INTEGER PRIMARY KEY AUTOINCREMENT",
+        "name TEXT",
+        "units INTEGER",
+        "direction INTEGER"
+    };
+
+    createTable(name, params, db, tables);
+}
+
+void TableCreator::createTestExercise(QSqlDatabase *db, const QStringList &tables)
+{
+    QString name = "test_exercises";
     QStringList params = {
         "id INTEGER PRIMARY KEY AUTOINCREMENT",
         "test INTEGER",
-        "exesise INTEGER",
+        "exercise INTEGER",
         "direct INTEGER",
         "five INTEGER",
         "four INTEGER",

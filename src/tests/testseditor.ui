@@ -23,17 +23,11 @@
       <attribute name="title">
        <string>Тесты</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_2"/>
      </widget>
-     <widget class="QWidget" name="tab_exesises">
+     <widget class="ExerciseList" name="tab_exercises">
       <attribute name="title">
        <string>Упражнения</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
-       <item>
-        <widget class="DictionaryWidget" name="w_exesises" native="true"/>
-       </item>
-      </layout>
      </widget>
     </widget>
    </item>
@@ -65,15 +59,15 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>DictionaryWidget</class>
-   <extends>QWidget</extends>
-   <header>dictionary/dictionarywidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>TestsList</class>
    <extends>QWidget</extends>
    <header>tests/testslist.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ExerciseList</class>
+   <extends>QWidget</extends>
+   <header>tests/exerciselist.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
@@ -86,8 +80,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>265</x>
-     <y>536</y>
+     <x>698</x>
+     <y>579</y>
     </hint>
     <hint type="destinationlabel">
      <x>181</x>

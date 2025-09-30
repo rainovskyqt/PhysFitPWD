@@ -40,9 +40,7 @@ private:
     void clearLines();
 
     void loadDictionaries();
-    void loadDictionary(DType type, QComboBox *box);
     void setFrom(Examinee *e);
-    void setBoxValue(int val, QComboBox *box);
     bool checkDate(QLineEdit *bl);
 };
 

@@ -14,9 +14,9 @@ class ExamineeManager : public QObject
 public:
     explicit ExamineeManager(QObject *parent = nullptr);
 
-//    QVector<Department*> getDepartments();
     Examinee *getExaminee(int id);
     void saveExaminee(Examinee *e);
+    void deleteExaminee(int id);
     QMultiHash<QString, QPair<QString, int> > examineeList(int dep = 0);
 
 private:

@@ -20,6 +20,8 @@ private slots:
 
 private:
     Ui::TestForm *ui;
+
+    void loadDictionaries();
 };
 
 #endif // TESTFORM_H

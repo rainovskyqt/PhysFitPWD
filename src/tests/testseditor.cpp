@@ -8,7 +8,6 @@ TestsEditor::TestsEditor(QWidget *parent) :
     ui(new Ui::TestsEditor)
 {
     ui->setupUi(this);
-    ui->w_exesises->setDictionary(Dictionary::Type::Exesise);
 }
 
 TestsEditor::~TestsEditor()
