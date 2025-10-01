@@ -126,9 +126,9 @@ void TestForm::on_btn_edit_clicked()
     ef->setTestExercise(te);
     if(ef->exec() == QDialog::Accepted){
         delete te;
-        te = ef->exercise();
-        item->setData(Qt::UserRole, QVariant::fromValue(te));
-        item->setText(te->exerciseName());
+        auto newTe = ef->exercise();
+        item->setData(Qt::UserRole, QVariant::fromValue(newTe));
+        item->setText(newTe->exerciseName());
     }
 
     ef->deleteLater();

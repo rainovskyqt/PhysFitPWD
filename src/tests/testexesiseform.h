@@ -20,10 +20,10 @@ public:
     void setTestExercise(TestExercise *e);
 
 private slots:
-    void on_cb_exercises_currentIndexChanged(int index);
     void on_btn_add_clicked();
-
     void on_btn_delete_clicked();
+    void on_btn_cancel_clicked();
+    void on_btn_ok_clicked();
 
 private:
     Ui::TestExesiseForm *ui;
@@ -32,6 +32,7 @@ private:
     void loadExercises();
     QString joinGrades();
     void parceGrades(QString g);
+    bool checkExercises();
 };
 
 #endif // TESTEXESISEFORM_H

@@ -4,7 +4,7 @@
 #include "tests/testsmanager.h"
 #include "exercise.h"
 #include "testexercise.h"
-
+#include <QMessageBox>
 #include <misc.h>
 
 TestExesiseForm::TestExesiseForm(QWidget *parent)
@@ -24,7 +24,7 @@ TestExesiseForm::~TestExesiseForm()
 TestExercise *TestExesiseForm::exercise()
 {
     auto e = ui->cb_exercises->currentData().value<Exercise*>();
-    auto te = new TestExercise(this);
+    auto te = new TestExercise();
 
     te->setExerciseId(e->id());
     te->setExerciseName(e->name());
@@ -48,6 +48,8 @@ void TestExesiseForm::loadExercises()
     for(const auto e : qAsConst(el)){
         ui->cb_exercises->addItem(e->name(), QVariant::fromValue(e));
     }
+
+    checkExercises();
 }
 
 QString TestExesiseForm::joinGrades()
@@ -74,9 +76,14 @@ void TestExesiseForm::parceGrades(QString g)
     }
 }
 
-void TestExesiseForm::on_cb_exercises_currentIndexChanged(int index)
+bool TestExesiseForm::checkExercises()
 {
-    auto e = ui->cb_exercises->itemData(index).value<Exercise*>();
+    if(ui->cb_exercises->count() == 0){
+        QMessageBox::information(this, "Нет упражнений", "Не создано ни одного упражнения, данные не будут сохранены");
+        return false;
+    }
+
+    return true;
 }
 
 void TestExesiseForm::on_btn_add_clicked()
@@ -92,5 +99,16 @@ void TestExesiseForm::on_btn_delete_clicked()
         return;
     int row = selected.at(0)->row();
     ui->tw_grades->removeRow(row);
+}
+
+void TestExesiseForm::on_btn_cancel_clicked()
+{
+    reject();
+}
+
+void TestExesiseForm::on_btn_ok_clicked()
+{
+    if(checkExercises())
+       accept();
 }
 
